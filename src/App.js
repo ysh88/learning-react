@@ -3,7 +3,11 @@ import StarRating from './components/StarRating';
 function App() {
   return (
     <div className="App">
-      <StarRating totalStars={5}/>
+      <StarRating
+        style={{ backgroundColor: 'lightblue' }}
+        totalStars={5}
+        onDoubleClick={e => alert('double click')}
+      />
     </div>
   );
 }

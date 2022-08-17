@@ -1,11 +1,27 @@
 import React, { useState } from 'react';
 import colorData from './color-data.json';
 import ColorList from './components/ColorList';
+import AddColorForm from './components/AddColorForm';
+import { v4 } from 'uuid';
 
 function App() {
   const [colors, setColors] = useState(colorData);
   return (
-    <div className="App">
+    <>
+      <AddColorForm
+        onNewColor={(title, color) => {
+          const newColors = [
+            ...colors,
+            {
+              id: v4(),
+              rating: 0,
+              title,
+              color,
+            },
+          ];
+          setColors(newColors);
+        }}
+      />
       <ColorList
         colors={colors}
         //상태 변화를 감지해서 반영하기 위해서 함수를 전달
@@ -23,7 +39,7 @@ function App() {
           setColors(newColors);
         }}
       />
-    </div>
+    </>
   );
 }
 
